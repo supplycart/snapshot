@@ -1,0 +1,33 @@
+{
+  "name": "supplycart/snapshot",
+  "description": "Capture model state over time",
+  "require": {
+    "laravel/framework": "^6.0"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^4.0",
+    "phpunit/phpunit": "^8.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Supplycart\\Snapshot\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "Supplycart\\Snapshot\\Tests": "tests/"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Supplycart\\Snapshot\\SnapshotServiceProvider"
+      ]
+    }
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Azri Ismail",
+      "email": "azri@supplycart.my"
+    }
+  ]
+}
