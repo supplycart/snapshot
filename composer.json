@@ -1,6 +1,9 @@
 {
   "name": "supplycart/snapshot",
   "description": "Capture model state over time",
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
   "require": {
     "php": "^7.3"
   },
