@@ -2,12 +2,10 @@
   "name": "supplycart/snapshot",
   "description": "Capture model state over time",
   "require": {
-    "php": "^7.0",
-    "laravel/framework": "^6.0"
+    "php": "^7.3"
   },
   "require-dev": {
-    "orchestra/testbench": "^4.0",
-    "phpunit/phpunit": "^8.5"
+    "orchestra/testbench": "^4.0"
   },
   "autoload": {
     "psr-4": {
@@ -15,7 +13,9 @@
     }
   },
   "autoload-dev": {
-    "Supplycart\\Snapshot\\Tests": "tests/"
+    "psr-4": {
+      "Supplycart\\Snapshot\\Tests\\": "tests/"
+    }
   },
   "extra": {
     "laravel": {

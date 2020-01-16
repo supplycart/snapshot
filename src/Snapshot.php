@@ -6,16 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 use Supplycart\Snapshot\Events\SnapshotCreated;
 use Supplycart\Snapshot\Events\SnapshotUpdated;
 
+/**
+ * Class Snapshot
+ * @package Supplycart\Snapshot
+ *
+ * @property array state
+ * @property \Supplycart\Snapshot\Contracts\CaptureSnapshots model
+ */
 class Snapshot extends Model
 {
     protected $fillable = [
         'model_type',
         'model_id',
-        'snapshot',
+        'state',
     ];
 
     protected $casts = [
-        'snapshot' => 'array',
+        'state' => 'array',
     ];
 
     protected $dispatchesEvents = [
@@ -30,6 +37,6 @@ class Snapshot extends Model
 
     public function toArray()
     {
-        return $this->snapshot;
+        return $this->state;
     }
 }
