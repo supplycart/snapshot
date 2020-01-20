@@ -8,6 +8,8 @@ use Supplycart\Snapshot\Snapshot;
 trait HasSnapshots
 {
     /**
+     * Snapshot relationship
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function snapshots(): MorphMany
@@ -16,6 +18,8 @@ trait HasSnapshots
     }
 
     /**
+     * Take current model state snapshot
+     *
      * @return Snapshot
      */
     public function takeSnapshot(): Snapshot
@@ -26,6 +30,8 @@ trait HasSnapshots
     }
 
     /**
+     * Get latest snapshot
+     *
      * @return Snapshot
      */
     public function getLatestSnapshot(): Snapshot
@@ -33,6 +39,11 @@ trait HasSnapshots
         return $this->snapshots()->latest('id')->first();
     }
 
+    /**
+     * Get data to be saved as snapshot
+     *
+     * @return array
+     */
     public function getSnapshotData(): array
     {
         return $this->toArray();
