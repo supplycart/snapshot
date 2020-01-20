@@ -28,6 +28,6 @@ class CreateSnapshotsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('snapshots');
     }
 }

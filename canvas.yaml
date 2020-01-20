@@ -1,0 +1,17 @@
+preset: package
+
+namespace: Supplycart\Snapshot
+
+model:
+  namespace: Supplycart\Snapshot
+
+paths:
+  src: src
+  resource: resources
+
+migration:
+  path: database/migrations
+  prefix: ''
+
+testing:
+  namespace: Supplycart\Snapshot
