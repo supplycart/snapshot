@@ -2,10 +2,13 @@
 
 namespace Supplycart\Snapshot\Tests;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Supplycart\Snapshot\Tests\Stubs\User;
 
 class CaptureSnapshotTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * @var User
      */
