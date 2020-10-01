@@ -1,29 +1,22 @@
 <?php
 
-namespace Supplycart\Snapshot\Tests;
+namespace Supplycart\Snapshot\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Supplycart\Snapshot\Tests\Stubs\User;
+use Supplycart\Snapshot\Tests\TestCase;
 
 class CaptureSnapshotTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @var User
-     */
-    private $user;
+    private User $user;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @var User $user */
-        $this->user = User::query()->create([
-            'name' => 'Azri',
-            'email' => 'mazri.iar@gmail.com',
-            'password' => 'secret',
-        ]);
+        $this->user = User::stub();
     }
 
     public function test_can_save_model_snapshot()

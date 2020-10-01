@@ -11,6 +11,8 @@ interface CaptureSnapshots
 
     public function takeSnapshot(): Snapshot;
 
+    public function restoreSnapshot(Snapshot $snapshot): bool;
+
     public function getLatestSnapshot(): Snapshot;
 
     public function getSnapshotData(): array;

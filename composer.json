@@ -5,11 +5,11 @@
     "test": "vendor/bin/phpunit"
   },
   "require": {
-    "php": "^7.3"
+    "php": "^7.4"
   },
   "require-dev": {
-    "orchestra/testbench": "^4.0",
-    "orchestra/canvas": "^4.4"
+    "orchestra/testbench": "^6.2",
+    "orchestra/canvas": "^6.0"
   },
   "autoload": {
     "psr-4": {
