@@ -29,6 +29,13 @@ trait HasSnapshots
         ]);
     }
 
+    public function restoreSnapshot(Snapshot $snapshot): bool
+    {
+        $this->fill($snapshot->state);
+
+        return $this->save();
+    }
+
     /**
      * Get latest snapshot
      *

@@ -14,4 +14,4 @@ migration:
   prefix: ''
 
 testing:
-  namespace: Supplycart\Snapshot
+  namespace: Supplycart\Snapshot\Tests
