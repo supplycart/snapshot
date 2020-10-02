@@ -2,12 +2,13 @@
 
 namespace Supplycart\Snapshot\Events;
 
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Supplycart\Snapshot\Snapshot;
 
-class SnapshotCreated
+class SnapshotRestored
 {
-    use SerializesModels;
+    use Dispatchable, SerializesModels;
 
     /**
      * @var \Supplycart\Snapshot\Snapshot

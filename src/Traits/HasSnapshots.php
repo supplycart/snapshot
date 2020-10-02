@@ -3,6 +3,7 @@
 namespace Supplycart\Snapshot\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Supplycart\Snapshot\Events\SnapshotRestored;
 use Supplycart\Snapshot\Snapshot;
 
 trait HasSnapshots
@@ -31,9 +32,13 @@ trait HasSnapshots
 
     public function restoreSnapshot(Snapshot $snapshot): bool
     {
-        $this->fill($snapshot->state);
+        $restored  = $this->fill($snapshot->state)->save();
 
-        return $this->save();
+        if ($restored) {
+            SnapshotRestored::dispatch($snapshot);
+        }
+
+        return $restored;
     }
 
     /**
