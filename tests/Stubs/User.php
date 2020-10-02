@@ -2,15 +2,15 @@
 
 namespace Supplycart\Snapshot\Tests\Stubs;
 
+use Faker\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Supplycart\Snapshot\Contracts\CaptureSnapshots;
 use Supplycart\Snapshot\Traits\HasSnapshots;
-use Illuminate\Foundation\Testing\WithFaker;
 
 class User extends Model implements CaptureSnapshots
 {
-    use HasSnapshots, WithFaker;
+    use HasSnapshots;
 
     protected $guarded = [];
 
@@ -18,13 +18,13 @@ class User extends Model implements CaptureSnapshots
 
     public static function stub(): User
     {
-        $user = new User;
-        $user->setUpFaker();
+        $faker = Factory::create();
 
+        $user = new User;
         $user
             ->fill([
-                'name' => $user->faker->name,
-                'email' => $user->faker->email,
+                'name' => $faker->name,
+                'email' => $faker->email,
                 'password' => Hash::make('secret'),
             ])
             ->save();

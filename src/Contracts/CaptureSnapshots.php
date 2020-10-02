@@ -13,7 +13,7 @@ interface CaptureSnapshots
 
     public function restoreSnapshot(Snapshot $snapshot): bool;
 
-    public function getLatestSnapshot(): Snapshot;
+    public function getLatestSnapshot(): ?Snapshot;
 
     public function getSnapshotData(): array;
 }
