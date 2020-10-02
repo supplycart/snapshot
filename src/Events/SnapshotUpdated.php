@@ -12,7 +12,7 @@ class SnapshotUpdated
     /**
      * @var \Supplycart\Snapshot\Snapshot
      */
-    public $snapshot;
+    public Snapshot $snapshot;
 
     /**
      * SnapshotCreated constructor.
