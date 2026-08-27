@@ -2,14 +2,18 @@
   "name": "supplycart/snapshot",
   "description": "Capture model state over time",
   "scripts": {
-    "test": "vendor/bin/phpunit"
+    "test": "@php vendor/bin/phpunit"
   },
   "require": {
-    "php": "^7.4|^8.0"
+    "php": "^8.5",
+    "illuminate/database": "^13.0",
+    "illuminate/queue": "^13.0",
+    "illuminate/support": "^13.0"
   },
   "require-dev": {
-    "orchestra/testbench": "^6.2",
-    "orchestra/canvas": "^6.0"
+    "orchestra/canvas": "^11.0",
+    "orchestra/testbench": "^11.0",
+    "phpunit/phpunit": "^12.5"
   },
   "autoload": {
     "psr-4": {
