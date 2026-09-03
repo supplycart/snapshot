@@ -4,6 +4,8 @@ namespace Supplycart\Snapshot\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Event;
+use Supplycart\Snapshot\Events\SnapshotRestored;
 use Supplycart\Snapshot\Tests\Stubs\User;
 use Supplycart\Snapshot\Tests\TestCase;
 
@@ -22,6 +24,7 @@ class RestoreSnapshotTest extends TestCase
 
     public function test_can_restore_snapshot()
     {
+        Event::fake([SnapshotRestored::class]);
         $oldName = $this->user->name;
         $snapshot = $this->user->takeSnapshot();
 
@@ -34,5 +37,9 @@ class RestoreSnapshotTest extends TestCase
 
         $this->assertDatabaseHas('users', ['name' => $oldName]);
         $this->assertEquals($oldName, $this->user->name);
+        Event::assertDispatched(
+            SnapshotRestored::class,
+            fn (SnapshotRestored $event) => $event->snapshot->is($snapshot),
+        );
     }
 }

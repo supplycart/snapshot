@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Supplycart\Snapshot\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -11,8 +13,6 @@ trait HasSnapshots
 {
     /**
      * Snapshot relationship
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function snapshots(): MorphMany
     {
@@ -21,8 +21,6 @@ trait HasSnapshots
 
     /**
      * Take current model state snapshot
-     *
-     * @return Snapshot
      */
     public function takeSnapshot(): Snapshot
     {
@@ -32,7 +30,7 @@ trait HasSnapshots
         ]);
 
         // cache latest snapshot
-        Cache::put("snapshot:{$this->getKey()}:latest", $snapshot);
+        Cache::put($this->snapshotCacheKey(), $snapshot);
 
         return $snapshot;
     }
@@ -50,20 +48,25 @@ trait HasSnapshots
 
     /**
      * Get latest snapshot
-     *
-     * @return Snapshot
      */
     public function getLatestSnapshot(): ?Snapshot
     {
-        return Cache::rememberForever("snapshot:{$this->getKey()}:latest", function () {
-            return $this->snapshots()->latest()->first();
+        return Cache::rememberForever($this->snapshotCacheKey(), function () {
+            return $this->snapshots()->latest('id')->first();
         });
+    }
+
+    public function snapshotCacheKey(): string
+    {
+        return sprintf(
+            'snapshot:%s:%s:latest',
+            $this->getMorphClass(),
+            $this->getKey(),
+        );
     }
 
     /**
      * Get data to be saved as snapshot
-     *
-     * @return array
      */
     public function getSnapshotData(): array
     {

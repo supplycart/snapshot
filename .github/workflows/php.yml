@@ -1,20 +1,33 @@
-name: Build and Test
+name: Tests
 
-on: [push]
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
 
 jobs:
-  build:
-
+  tests:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: dom, json, libxml, mbstring, pdo_sqlite
+          coverage: xdebug
+          tools: composer:v2
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      - name: Validate Composer manifest
+        run: composer validate --strict --no-check-lock
 
-    - name: Run test suite
-      run: composer run-script test
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-interaction --no-progress
+
+      - name: Run tests with coverage
+        run: composer test:coverage
